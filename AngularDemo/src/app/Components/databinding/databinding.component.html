@@ -1,0 +1,12 @@
+<h2 style="color:chocolate"> Data Binding Component</h2>
+<p style="font-weight:800;">1. String Interpolation</p>
+Message: {{message}}
+
+<p style="font-weight:800;">2. Property Binding</p>
+<textarea type="text" [value]=message></textarea>
+
+<p style="font-weight:800;">3.Event Binding</p>
+<button class="btn btn-primary" (click)="showData()">Click Here</button>
+<p style="font-weight: 900;">4. Two Way Binding </p><br/>
+<textarea [(ngModel)]=twoway></textarea> <br/> <br/>
+{{twoway}}

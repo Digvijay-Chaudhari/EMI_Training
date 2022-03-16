@@ -1,0 +1,13 @@
+-- Project Structure
+-- Components
+-- ng g c hello
+
+-- Modules
+-- Data Binding=>
+1 way databinding
+2 way databinding=> [()] ngModel
+
+--- String Interpolation ={{}}
+var img="c:\\data\demo.png"
+--Property Binding=> <img[src]="img"]
+--Event Binding => <button(click)="Clickhere()">
