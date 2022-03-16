@@ -1,0 +1,24 @@
+Angular Component LifeCycle
+Constructor
+
+1. ngOninit()=2
+2.ngOnChanges()=> 1 =>@input,@output => EventEmitter => simpleChanges
+currentvalue,previousvalue,firstChange()
+3.ngDoCheck()=>3
+4.ngAfterContentInit()=>4
+5.ngOnDestroy()=>8
+6.ngAfterViewChecked()=>7
+7.ngAfterViewInit()=>6
+8.ngAfterContentChecked()=>5
+
+
+1. fetching data=> Component1
+2. Display data=> Component2
+3. Calculate Salary of Employees whose designation=> Manager=> Component3
+
+@Output Decorator
+EventEmitter
+@Output() EmpDetails =new EventEmitter();
+
+emit,subscribe
+this.emp.emit

@@ -1,0 +1,26 @@
+
+<h3>Employee List Component</h3>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Location</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+      
+        <td>{{emp.Id}}</td>
+        <td>{{emp.name}}</td>
+        <td>{{emp.location}}</td>
+        <td>{{emp.designation}}</td>
+        <td>{{emp.salary}}</td> &nbsp;
+        <td><button (click)="displayDetails(emp)">Edit</button></td>
+      </tr>
+     
+      </tbody>
+      </table>
+      <app-employee-detail [employee]="selectedEmployee" (employeeChange)="updateDetails($event)"></app-employee-detail>
