@@ -1,0 +1,23 @@
+{
+    "Employee":[
+        {
+            "id":1,
+            "userName":"Digvijay",
+            "password":"12345",
+            "name":"Digvijay",
+            "phoneNumber":"8624065815",
+            "role":"admin",
+            "roleId":1
+        },
+        {
+            "id":1,
+            "userName":"Shubham",
+            "password":"9876",
+            "name":"Shubham",
+            "phoneNumber":"9637971135",
+            "role":"user",
+            "roleId":1
+        }
+
+    ]
+}

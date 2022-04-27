@@ -1,0 +1,69 @@
+<div fxLayout="row" fxFlex="30"></div> 
+
+<div fxLayout="row" fxFlex="40"> 
+    <mat-card class="example-card" style="margin: 150px;padding: 30px;">
+            <form [formGroup]="BookData" (ngSubmit)="onFormSubmit(BookData.value)">
+                <div fxLayout="column" fxLayoutAlign="space-between stretch" >
+                    <div>
+                        <mat-form-field>
+                            <input matInput placeholder="Enter Book ID" formControlName="id">
+                            <mat-error>
+                                <span *ngIf="!BookData.get('id')?.valid && BookData.get('id')?.touched">Book ID</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div>
+                        <mat-form-field>
+                            <input matInput placeholder="Enter Book Name" formControlName="bookName">
+                            <mat-error>
+                                <span *ngIf="!BookData.get('bookName')?.valid && BookData.get('bookName')?.touched">Book Name Required</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field>
+                            <input placeholder="Enter To Auther Name" matInput formControlName="auther">
+                            <mat-error>
+                                <span *ngIf="!BookData.get('auther')?.valid && BookData.get('auther')?.touched">Auther Name Required</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div>
+                        <mat-form-field>
+                            <input type="date" matInput placeholder="Enter Book Relese Date" formControlName="issuedDate">
+                            <mat-error>
+                                <span *ngIf="!BookData.get('issuedDate')?.valid && BookData.get('issuedDate')?.touched">Date is Required</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Is Available</mat-label>
+                            <select matNativeControl formControlName="isAvailable" required>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+                        <button mat-raised-button mat-dialog-close color="primary" type="submit" [disabled]="!BookData.valid">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                        <button>
+                            <a mat-raised-button mat-dialog-close color="primary" [routerLink]="['/admin/listbook']">
+                                <mat-icon>clear</mat-icon>
+                            </a>
+                        </button>
+                        
+                    </div>
+                </div>
+            </form>
+    </mat-card>
+</div>
+
+<div fxLayout="row" fxFlex="30"></div> 

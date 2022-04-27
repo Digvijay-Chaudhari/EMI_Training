@@ -1,0 +1,23 @@
+<div fxLayoutAlign="center center" fxFlexFill class="maindiv">
+    <mat-card fxFlex="30"> 
+      <mat-toolbar fxLayoutAlign="center center">
+        <mat-toolbar-row>
+            <span>EMI Budget Approval</span>
+        </mat-toolbar-row>
+        
+      </mat-toolbar> 
+
+      <form fxLayoutAlign="strech" fxLayout="column" class="login-form" #myForm="ngForm" (ngSubmit)="loginUser(myForm)" >
+        <mat-form-field >
+          <mat-label>User Name</mat-label>
+          <input type="userName" matInput  name="userName" placeholder="User Name" required=""  ngModel>
+        </mat-form-field>
+      
+        <mat-form-field >
+          <mat-label>Password</mat-label>
+          <input type="password" matInput placeholder="Password" name="password" required="" ngModel>
+        </mat-form-field>
+        <button id="loginbutton" mat-raised-button color="primary" type="submit" >Login</button>
+      </form>
+    </mat-card>
+  </div>

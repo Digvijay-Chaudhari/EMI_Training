@@ -1,0 +1,13 @@
+.example-card {
+    max-width: 300px;
+    max-height: 800px;
+    margin: auto;
+    margin-top: 100px;
+    padding: 10px;
+    justify-content: center;
+  }
+
+.mat-form-field,input,mat-error{
+    justify-content: center;
+    align-items: center;
+}

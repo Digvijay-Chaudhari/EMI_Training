@@ -1,0 +1,74 @@
+{
+  "Books": [
+    {
+      "id": 2,
+      "bookName": "SQL Server",
+      "auther": "Prasad",
+      "issuedDate": "2022-03-17",
+      "isAvailable": true
+    },
+    {
+      "id": 3,
+      "bookName": "Angular",
+      "auther": "sfsfs",
+      "issuedDate": "2022-03-17",
+      "isAvailable": "true"
+    },
+    {
+      "id": 4,
+      "bookName": ".Net Core",
+      "auther": "Vaibhav",
+      "issuedDate": "2022-03-17",
+      "isAvailable": true
+    },
+    {
+      "id": "78",
+      "bookName": "History",
+      "auther": "Powerful man",
+      "issuedDate": "2022-04-30",
+      "isAvailable": "true"
+    },
+    {
+      "id": "6",
+      "bookName": "Ramayan",
+      "auther": "Ved vyas",
+      "issuedDate": "2022-04-09",
+      "isAvailable": "true"
+    },
+    {
+      "id": "7",
+      "bookName": "Mahabharat",
+      "auther": "Ganesh",
+      "issuedDate": "2022-04-16",
+      "isAvailable": "true"
+    },
+    {
+      "id": "15",
+      "bookName": "Mahabharat part-3",
+      "auther": "Shubham Patil",
+      "issuedDate": "2022-04-15",
+      "isAvailable": "true"
+    },
+    {
+      "id": "17",
+      "bookName": "samved",
+      "auther": "mahesh",
+      "issuedDate": "2022-05-08",
+      "isAvailable": "true"
+    },
+    {
+      "id": "20",
+      "bookName": "yajurved",
+      "auther": "vishnu",
+      "issuedDate": "2022-04-02",
+      "isAvailable": "true"
+    }
+  ],
+  "User": [
+    {
+      "requestCount": 3,
+      "id": 1,
+      "userName": "Digvijay"
+    }
+  ]
+}
