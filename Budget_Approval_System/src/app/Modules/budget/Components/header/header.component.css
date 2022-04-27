@@ -1,0 +1,35 @@
+/* .navbar{
+    justify-content: flex-start;
+}
+
+#btn1{
+    padding-left: 1rem;
+    color: aquamarine;
+}
+
+#username{
+    padding-left: 1rem;
+}
+
+.spacer{
+    flex: 1 1 auto;
+} */
+
+.img{
+    padding-left: 5rem;
+    padding: 0px 5px;
+}
+
+button{
+    margin: 3px;
+    background-color: bisque;
+}
+/* 
+mat-toolbar{
+    width: 100%;
+    height: auto;
+        position: fixed;        
+        background: #333;
+        padding: 10px 0;
+        color: #fff;
+} */

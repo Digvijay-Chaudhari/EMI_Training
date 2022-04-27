@@ -1,0 +1,15 @@
+.maindiv mat-card{
+    padding: 0px;
+    /* background-image:url("../../../assets/Images/EMI3.jpg") ; */
+}
+
+.login-form{
+    padding: 45px;
+}
+
+#loginbutton{
+    margin-top: 20px;
+    color: black;
+    background-color: chocolate;
+    border-radius: 25px;
+}

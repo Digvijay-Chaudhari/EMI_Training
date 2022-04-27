@@ -1,0 +1,19 @@
+.formField{
+    margin-bottom:10px;
+    width: 400px;
+    display: block !important;
+}
+
+.formField242{
+    margin-bottom:10px;
+    width: 400px;
+    text-align: right;
+}
+
+#description{
+    height: 100px;
+}
+
+mat-form-field{
+    background-color: rgb(245, 245, 245);
+}

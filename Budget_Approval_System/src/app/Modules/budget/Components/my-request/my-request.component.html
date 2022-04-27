@@ -1,0 +1,48 @@
+<body>
+    <div class="container-fluid" style="background-color: #c4dde7;">
+      <!-- <div class="container-fluid" > -->
+    
+      <div class="container">
+            <div fxLayout="row " fxLayoutAlign="space-between center">
+                <button matTooltip="Add Book" type="button" mat-raised-button style="margin-top: 2%;" > <mat-icon>add</mat-icon></button>
+                <div>
+                    <input type="text" [(ngModel)]="searchBox"><mat-icon>search</mat-icon>
+                </div>
+    
+            </div>
+            <div class="row" >
+                   <div class="col-md-3"  *ngFor="let request of RequestData">
+                    <mat-card class="example-card"   style="margin-top: 20%; padding: auto;" >
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>{{request.purpose}}</mat-card-title><br>
+                          <mat-card-subtitle>{{request.plannedDate}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image src="../../../material/../../../assets/Images/party.jpg" alt="Photo of a Shiba Inu">
+                        <mat-card-content>
+                          <p style="font-style: oblique;
+                          font-weight: 100;">
+                            {{request.description}}
+                          </p>
+                          <div class="row">
+                             <!-- <div class="col-md-5">
+                                 Author :
+                             </div>
+                             <div class="col-md-7">Ravi</div> -->
+                          </div>
+                          <div class="row">
+                                <span>Approver:{{request.approver}}</span>
+                                <span>Estimated_amount:{{request.estimatedCost}}</span>
+                                <span>Advanced_amount:{{request.adancedAmount}}</span>
+                         </div>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <button matTooltip="Edit Book"  mat-raised-button color="primary" ><mat-icon >edit</mat-icon></button>
+                          <button matTooltip="Delete Book" matTooltipClass="redToolTip" mat-raised-button color="warn" (click)="deleteRequest(request)" ><mat-icon >delete</mat-icon></button>
+                        </mat-card-actions>
+                      </mat-card>
+                   </div>
+            </div>
+        </div>
+    </div>
+    </body>

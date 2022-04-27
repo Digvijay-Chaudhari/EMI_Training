@@ -1,0 +1,26 @@
+.example-card {
+    max-width: 88%;  }
+
+    .example-header-image {
+        background-image: url('../../../../../assets/Images/party.jpg');
+        background-size: cover;
+      }
+  
+  /* body { background-color: #c4dde7 !important;} */
+
+  .mat-card-image,img{
+    height: 190px;
+  }
+  .mat-card:hover  {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+.redToolTip{
+  background: red;
+}
+
+#btn1{
+    height: 10px;
+    width: 10px;
+    padding: 10px;
+}
+

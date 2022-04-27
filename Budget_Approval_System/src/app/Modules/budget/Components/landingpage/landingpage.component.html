@@ -1,0 +1,71 @@
+<div fxLayout="row" style="background-color:rgb(244, 237, 237)" >
+    <div fxFlex="10"></div>
+    <div fxFlex="80">
+        <div fxLayout="row" fxLayoutAlign="center end">
+            <mat-card style="margin: 40px;border-radius: 25px; ">
+                <form [formGroup]="requestData" (ngSubmit)="onFormSubmit(requestData.value)" style="padding: 10px; border-radius: 25px; border: 2px solid black; background-color: whitesmoke;">
+                    <mat-form-field appearance="fill" class="formField">
+                        <mat-label>Request ID</mat-label>
+                        <input matInput placeholder="Request Id" formControlName="id">
+                        <mat-error>
+                            <span *ngIf="!requestData.get('id')?.valid && requestData.get('id')?.touched">Request Id is manadatory</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="formField">
+                        <mat-label>Purpose</mat-label>
+                        <input matInput placeholder="purpose" formControlName="purpose">
+                        <mat-error>
+                            <span *ngIf="!requestData.get('purpose')?.valid && requestData.get('purpose')?.touched">Purpose is manadatory</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="formField">
+                        <mat-label>Description</mat-label>
+                        <textarea id="description" matInput maxlength="150" #description formControlName="description" ></textarea>
+                        <mat-error>
+                            <span *ngIf="!requestData.get('description')?.valid && requestData.get('description')?.touched">Discription is manadatory</span>
+                        </mat-error>
+                        <mat-hint>Brifly explain the Purpose of Request </mat-hint>
+                        <mat-hint align="end">{{description.value.length}}/150</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="formField"  >
+                        <mat-label>Who's your Approver</mat-label>
+                        <mat-select formControlName="approver">
+                            <mat-option value="one">Shubham</mat-option>
+                            <mat-option value="two">Shantanu</mat-option>
+                        </mat-select>
+                        <mat-error>
+                            <span *ngIf="!requestData.get('approver')?.valid && requestData.get('approver')?.touched">Select Approver</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="formField" >
+                        <mat-label>Estimated Cost</mat-label>
+                        <input type="number" matInput formControlName="estimatedCost">
+                        <span matPrefix>₹&nbsp;</span>
+                        <span matSuffix>.00</span>
+                        <mat-error>
+                            <span *ngIf="!requestData.get('estimatedCost')?.valid && requestData.get('estimatedCost')?.touched">Select Est. Amount</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="formField" >
+                        <mat-label>Advance Amount</mat-label>
+                        <input type="number" matInput formControlName="adancedAmount">
+                        <span matPrefix>₹&nbsp;</span>
+                        <span matSuffix>.00</span>
+                        <mat-error>
+                            <span *ngIf="!requestData.get('adancedAmount')?.valid && requestData.get('adancedAmount')?.touched">Select Advance Amount</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="formField">
+                        <mat-label>Plan Date</mat-label>
+                        <input type="date" matInput formControlName="plannedDate">
+                    </mat-form-field>
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+                        <button mat-raised-button color="primary" [disabled]="!requestData.valid">Submit</button>
+                        <button mat-raised-button color="warn">Cancel</button>
+                    </div>    
+                </form>
+            </mat-card>
+        </div>    
+    </div>
+    <div fxFlex="10"></div>
+</div>

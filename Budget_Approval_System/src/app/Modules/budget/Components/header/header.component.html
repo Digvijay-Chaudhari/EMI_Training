@@ -1,0 +1,39 @@
+
+<!-- <mat-toolbar color="primary" class="navbar">
+     
+    <div><img src="../../../../../assets/Images/logo-euromonitor-intl-color.png" alt="" height="60px" width="150px"></div>
+    <div id="username">
+      <span style="justify-content: flex-end;">Hi {{user}}</span>
+    </div>
+    <div class="spacer"></div>
+    <div>
+        <button id="btn1" mat-flat-button color="primary" routerLink="./myrequest">My Request</button>
+        <button id="btn1" mat-flat-button color="primary" routerLink="./viewhistory">View History</button>
+        <button id="btn1" mat-flat-button color="primary" routerLink="./testing">Testing</button>
+        <button id="btn1" mat-raised-button  color="primary" routerLink="/login">LogOut</button>
+    </div>             
+</mat-toolbar> -->
+
+<mat-toolbar color="warn">
+    <mat-toolbar-row fxLayoutAlign="space-between center">
+        <div fxLayout="row-revers" fxLayoutAlign="space-around center" fxFlex="initial" style="margin: 10px;">
+            <img src="../../../../../assets/Images/logo-euromonitor-intl-color.png" alt="" height="50px" width="180px" routerLink="./landingpage">
+            <div *ngIf="!devicexs" fxFlex="grow" style="margin: 10px;">
+                <button mat-raised-button routerLink="./myrequest">My Request</button>
+                <button mat-raised-button routerLink="./viewhistory">View History</button>
+                <button mat-raised-button routerLink="./testing">Testing</button>
+            </div>
+        </div>
+        <div>
+            <span style="padding-right: 4rem;">hi {{user}}</span>
+            <button mat-button routerLink="/login">LogOut</button>
+        </div>
+    </mat-toolbar-row>
+
+
+    <mat-toolbar-row *ngIf="devicexs" fxLayoutAlign="space-between end">
+        <button mat-raised-button>My Request</button>
+        <button mat-raised-button>View History</button>
+        <button mat-raised-button>Testing</button>
+    </mat-toolbar-row>
+</mat-toolbar>

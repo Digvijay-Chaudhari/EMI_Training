@@ -1,0 +1,38 @@
+<!-- <form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">User Name</label>
+      <input type="text" name="username" placeholder="Enter user name" class="form-control" [(ngModel)]="username">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="password">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="loginUser()">Submit</button>
+  </form> -->
+  <!-- <lib-BudgetApproval-Emi></lib-BudgetApproval-Emi> -->
+
+  <div fxLayoutAlign="center center" fxFlexFill class="maindiv">
+    <mat-card fxFlex="30"> 
+      <mat-toolbar fxLayoutAlign="center center">
+        <mat-toolbar-row>
+          <img src="../../../assets/Images/logo-euromonitor-intl-color.png" alt="" height="50px" width="180px">
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+            <span>EMI Budget Approval</span>
+        </mat-toolbar-row>
+        
+      </mat-toolbar> 
+      <form fxLayoutAlign="strech" fxLayout="column" class="login-form">
+        <mat-form-field >
+          <mat-label>User Name</mat-label>
+          <input type="text" matInput placeholder="User Name" name="username" [(ngModel)]="username" >
+        </mat-form-field>
+      
+        <mat-form-field >
+          <mat-label>Password</mat-label>
+          <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="password">
+        </mat-form-field>
+        <button id="loginbutton" mat-raised-button color="primary" type="submit" (click)="loginUser()">Login</button>
+      </form>
+    </mat-card>
+  </div>
