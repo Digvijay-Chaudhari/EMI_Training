@@ -1,0 +1,166 @@
+CREATE TABLE UserInfo (
+    UserID int NOT NULL PRIMARY KEY,
+    UserName varchar(50),
+    Password Nvarchar(50),
+    FullName varchar(100),
+	EmailID Nvarchar(100),
+    Designation varchar(100),
+	ManagerId int,
+	IsManager BIT,
+	IsDeleted BIT
+);
+
+*********************************************************************
+
+CREATE TABLE RequestDetail (
+	RequestID int NOT NULL PRIMARY KEY,
+	UserID int FOREIGN KEY REFERENCES UserInfo(UserID),
+	ManagerId int,
+	Purpose varchar(100),
+	Description Nvarchar(200),
+	Est_Amount integer,
+	Adv_Amount integer,
+	RequestDate date,
+	RequestStatus int, 
+	Comments Nvarchar(200),
+	IsDeleted BIT
+)
+
+
+0-pending
+1-accepted
+2-rejected
+
+insert into UserInfo values (101,'Digvijay','dig12345','Digvijay','digvijay@euromonitor.com','Software Engineer 1',106,0,0);
+insert into UserInfo values (102,'Raghu','rag12345','Raghu','raghu@euromonitor.com','Software Engineer 1',107,0,0);
+insert into UserInfo values (103,'Ambuj','amb12345','Ambuj','Ambuj@euromonitor.com','Software Engineer 1',106,0,0);
+insert into UserInfo values (104,'Srinivas','sri12345','Srinivas','Srinivas@euromonitor.com','Software Engineer 1',106,0,0);
+insert into UserInfo values (105,'Vamshi','Vam12345','Vamshi','Vamshi@euromonitor.com','Software Engineer 1',108,0,0);
+insert into UserInfo values (106,'Nagaraja','nag12345','Nagaraja','Nagaraja@euromonitor.com','Team Lead',109,1,0);
+insert into UserInfo values (107,'Navin','nav12345','Navin','Navin@euromonitor.com','Team Lead',109,1,0);
+insert into UserInfo values (108,'Dinesh','Din12345','Dinesh','Dinesh@euromonitor.com','Team Lead',109,1,0);
+insert into UserInfo values (109,'Jurgen','Jur12345','Jurgen','Jurgen@euromonitor.com','Director',110,1,0);   
+insert into UserInfo values (110,'Chris','Chris12345','Chris','Chris@euromonitor.com','CTO',111,1,0);   
+insert into UserInfo values (111,'Tim','Tim12345','Tim','Tim@euromonitor.com','CEO',0,1,0);
+
+****************************************************************************************************************************
+
+insert into RequestDetail values(1001,101,106,'going to movie','business meeting',5000,2000,getdate(),0,null,0);
+insert into RequestDetail values(1002,101,106,'going to Outing','business meeting',4000,2000,getdate(),1,null,0);
+insert into RequestDetail values(1003,102,107,'going to Water Park','business meeting',5000,1000,getdate(),2,null,0);
+insert into RequestDetail values(1004,102,107,'going to Goa','business meeting',8000,2000,getdate(),0,null,0);
+insert into RequestDetail values(1005,103,106,'going to Mall','business meeting',2000,500,getdate(),1,null,0);
+insert into RequestDetail values(1006,104,106,'going to PG','business meeting',5000,2000,getdate(),2,null,0);
+insert into RequestDetail values(1007,105,108,'going to Hotel','business meeting',500,200,getdate(),2,null,0);
+insert into RequestDetail values(1008,105,108,'going to Outing','business meeting',9000,2000,getdate(),0,null,0);
+insert into RequestDetail values(1009,106,109,'going to JP Park','business meeting',9000,2000,getdate(),0,null,0);
+insert into RequestDetail values(1010,107,109,'going to Water Park','business meeting',9000,2000,getdate(),0,null,0);
+insert into RequestDetail values(1011,108,109,'going to Business metting','business meeting',9000,2000,getdate(),0,null,0);
+
+*************************************************************************************************************************************
+
+imp
+select u2.FullName,u1.FullName As 'Approver' from UserInfo u1 join UserInfo u2  on u1.UserID=u2.ManagerId where u2.UserID=102
+
+**********************************************************************
+Create PROCEDURE uspGetRequestDetail 
+   @userID int
+AS  
+BEGIN 
+	Declare @managerName22 varchar(100) 
+	exec uspGetManagerName @userID,@managerName22 OUTPUT
+
+	select rd.RequestID,rd.Purpose,rd.Description,
+	rd.Est_Amount,rd.Adv_Amount,rd.RequestDate,rd.RequestStatus,
+	@managerName22 as 'Approver'
+	from RequestDetail rd where rd.UserID=@userID
+END
+
+*****************************************************************************
+
+CREATE PROCEDURE uspGetManagerName 
+   @userID int,  
+   @managerName varchar(100) OUTPUT  
+AS  
+BEGIN 
+   select @managerName = u1.FullName 
+   from UserInfo u1 join UserInfo u2 
+   on u1.UserID=u2.ManagerId where u2.UserID=@userID
+END
+
+Declare @managerName22 varchar(100) 
+exec uspGetManagerName 101,@managerName22 OUTPUT
+print @managerName22
+
+*************************************************************************
+
+
+Query for Getting userinfo with manager name--
+
+select u2.UserID,u2.FullName,u2.EmailID,u2.Designation,u2.IsManager,u2.ManagerId,u1.FullName as 'Manager'
+   from UserInfo u1 join UserInfo u2 
+   on u1.UserID=u2.ManagerId where u2.UserName='Digvijay'and u2.Password='dig12345' and u1.IsDeleted=0
+   
+*******************************************************************************************************************   
+
+Query for Getting userinfo with manager and super manager name--
+
+    select u3.UserID,u3.FullName,u3.EmailID,u3.Designation,
+	u3.IsManager,u3.ManagerId,u2.FullName as 'Manager',u1.FullName as 'Supermanager'from UserInfo u1 
+	join UserInfo u2 on u1.UserID = u2.ManagerId
+	join UserInfo u3 on u2.UserID = u3.ManagerId where u3.UserID=109
+	
+******************************************************************************************************************
+Create PROCEDURE uspGetUserInfo   
+   @userID int  
+AS    
+BEGIN   
+   select u3.UserID,u3.FullName,u3.EmailID,u3.Designation,
+	u3.IsManager,u3.ManagerId,u2.FullName as 'Manager',u1.FullName as 'SuperManager'from UserInfo u1 
+	join UserInfo u2 on u1.UserID = u2.ManagerId
+	join UserInfo u3 on u2.UserID = u3.ManagerId where u3.UserID=@userID
+END
+
+***********************************************************************************************************************	
+
+Sp for getting request for Manager by manager id
+
+CREATE PROCEDURE uspGetRequestDetailForManager
+	@ManagerID int 
+ AS    
+ BEGIN 
+	Declare @managerName22 varchar(100)   
+	exec uspGetManagerName @ManagerID,@managerName22 OUTPUT  
+  
+	select rd.RequestID,rd.UserID,rd.Purpose,rd.Description,  
+	rd.Est_Amount,rd.Adv_Amount,rd.RequestDate,rd.RequestStatus,  
+	@managerName22 as 'Approver'  
+	from RequestDetail rd where rd.ManagerId=@ManagerID And rd.isDeleted=0  
+ END
+ 
+*********************************************************************************************************************
+
+create table Employees(EmpId int, Name varchar(20), Designation varchar(20), Email varchar(30), Gender varchar(15), Reporting_Manager varchar(20),ManagerId int,Team varchar(20));
+
+insert into Employees values (101,'Harsha','SE1','harsha@euromonitor.com','Male','Sudeep',109,'Passport Team1');
+insert into Employees values (102,'Vinay','SE1','vinay@euromonitor.com','Male','Naveen',110,'Passport Team3');
+insert into Employees values (103,'Vamshi','SE1','vamshi@euromonitor.com','Male','Dinesh',111,'ForecastModels Team1');
+insert into Employees values (104,'Charan','SE1','charan@euromonitor.com','Male','Shivraj',112,'Passport Team2');
+insert into Employees values (105,'Ambuj','SE1','ambuj@euromonitor.com','Male','Nagaraj',113,'DT Team1');
+insert into Employees values (106,'Raghu','SE1','raghu@euromonitor.com','Male','Naveen',110,'Passport Team3');
+insert into Employees values (107,'Digvijay','SE1','digvijay@euromonitor.com','Male','Nagaraj',113,'DT Team1');
+insert into Employees values (108,'Srinivas','SE1','srinivas@euromonitor.com','Male','Nagaraj',113,'DT Team1');
+insert into Employees values (109,'Sudeep','TL','Sudeep@euromonitor.com','Male','Jurgen',114,'Passport Team1');
+insert into Employees values (110,'Naveen','TL','Naveen@euromonitor.com','Male','Jurgen',114,'Passport Team3');
+insert into Employees values (111,'Dinesh','TL','Dinesh@euromonitor.com','Male','Jurgen',114,'ForecastModels Team1');
+insert into Employees values (112,'Shivraj','TL','Shivraj@euromonitor.com','Male','Jurgen',114,'Passport Team2');
+insert into Employees values (113,'Nagaraj','TL','Nagaraj@euromonitor.com','Male','Jurgen',114,'DT Team1');
+insert into Employees values (114,'Jurgen','CM','Jurgen@euromonitor.com','Male',null,null,'Technology');
+
+
+
+<button matTooltip="Approve" *ngIf="!request.isApproved && !request.isRejected" mat-raised-button color="primary" [disabled]="request.isApproved"  (click)="approvRequest(request)">Approve</button>&nbsp;
+<button matTooltip="Reject" *ngIf="!request.isApproved && !request.isRejected" matTooltipClass="redToolTip" mat-raised-button color="warn" (click)="rejectRequest(request)">Reject</button>
+<button matTooltip="Upload" *ngIf="request.isApproved && !request.isRejected" matTooltipClass="redToolTip" mat-raised-button style="background-color:green;">Upload</button>
+<button matTooltip="Reason" *ngIf="!request.isApproved && request.isRejected" matTooltipClass="redToolTip" mat-raised-button color="warn" (click)="openDialog(request)">Reason</button>
+
